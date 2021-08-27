@@ -1,5 +1,5 @@
 // 'username' will show up next to the greeting
-const username = "grtcdr";
+const username = "buddy";
 
 // Holds the greeting phrase
 const determineGreet = hours => document.getElementById("greeting").innerText = `Good ${hours < 12 ? "Morning, " : hours < 18 ? "Afternoon, " : "Evening, "}` + username + '.';
