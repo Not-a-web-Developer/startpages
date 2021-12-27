@@ -29,10 +29,19 @@ document.getElementById("se_button").addEventListener("click", function() {
     cycleSearchEngines(se);
 });
 
+const cycleSearchEngines = se => {
+    const curData = search_engines[(se+1) % search_engines.length];
+    document.getElementById("se_icon").src = "icons/" + curData.src;
+    document.getElementById("search").placeholder = "Searching with " + curData.placeholder;
+    document.getElementById("search_eng_form").action = curData.action;
+};
+
 //Do not allow searching if the user clicks "GO" when the search box is empty
 function check_if_search_empty(event) {
 if (document.forms["search_eng_form"]["q"].value == "") {
     event.preventDefault();
+    document.getElementById("search").placeholder = "Put something in before searching! you sleep deprived or what"
+    setTimeout(function(){document.getElementById("search").placeholder = "Searching with " + search_engines[(se+1) % search_engines.length].placeholder;}, 2000)
 }}
 
 document.getElementById("go_btn").addEventListener("click", function(){
@@ -57,9 +66,3 @@ const search_engines = [{
     action: "https://www.youtube.com/results?q="
 }];
   
-const cycleSearchEngines = se => {
-    const curData = search_engines[(se+1) % search_engines.length];
-    document.getElementById("se_icon").src = "icons/" + curData.src;
-    document.getElementById("search").placeholder = "Searching with " + curData.placeholder;
-    document.getElementById("search_eng_form").action = curData.action;
-};
